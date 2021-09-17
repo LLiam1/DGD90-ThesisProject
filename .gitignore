@@ -1,9 +1,9 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-Assets/AssetStoreTools*
+/DGD90ThesisProject/[Ll]ibrary/
+/DGD90ThesisProject/[Tt]emp/
+/DGD90ThesisProject/[Oo]bj/
+/DGD90ThesisProject/[Bb]uild/
+/DGD90ThesisProject/[Bb]uilds/
+/DGD90ThesisProject/Assets/AssetStoreTools*
 
 # Visual Studio cache directory
 .vs/
