@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Modules
     public MovementModule movementModule;
     public CollisionModule collisionModule;
-    public InputModule inputModule;
-
+    public InputModule inputModule; 
 
     public Rigidbody2D rb;
 
     public float moveSpeed;
 
     public bool isPlayerInStaircase;
+    public bool isPlayerInLightswitch;
 
     private void Awake()
     {

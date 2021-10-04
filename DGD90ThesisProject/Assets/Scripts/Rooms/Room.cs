@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
-public class RoomController : MonoBehaviour
+public class Room : MonoBehaviour
 {
 
 }
-

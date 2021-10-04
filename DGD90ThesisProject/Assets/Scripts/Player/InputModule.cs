@@ -18,11 +18,16 @@ public class InputModule : MonoBehaviour
         //Check If Key (E) is Pressed AND if Player is in a staircase Trigger.
         if (Input.GetKeyDown(KeyCode.E) && playerController.isPlayerInStaircase)
         {
-            Debug.Log("Key Pressed!");
-
             //This will move the player & Get the destination of the staircase
             playerController.movementModule.SCMovement(playerController
                 .collisionModule.curretCollision.GetComponent<StaircaseController>().destination);
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.K) && playerController.isPlayerInLightswitch)
+        {
+            playerController.collisionModule.curretCollision.GetComponent<LightSwitch>().isActive
+                = !playerController.collisionModule.curretCollision.GetComponent<LightSwitch>().isActive;
         }
     }
 }
