@@ -11,7 +11,7 @@ public class CollisionModule : MonoBehaviour
     //Current Collision Object
     //public GameObject[] curretCollision;
 
-    //List Because we can be in multiple Collisions at once
+    //List Because the Player can be in multiple Collisions at once
     public List<GameObject> currentCollisions = new List<GameObject>();
 
     private void Awake()

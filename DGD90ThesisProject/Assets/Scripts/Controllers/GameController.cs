@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class GameController : MonoBehaviour
 {
@@ -17,7 +18,10 @@ public class GameController : MonoBehaviour
     public const int MAX_LIGHTS_ACITVE = 3;
 
     //Keys required to reset Fuse!
-    public const int MAX_KEYS_REQUIRED_RESET_FUSE = 3; 
+    public const int MAX_KEYS_REQUIRED_RESET_FUSE = 3;
+
+    //Float Target Light Intensity
+    public const float TARGET_LIGHT_INTENSITY = 0.29f;
 
     //Bool Blown Fuse
     public bool isFuseBlown = false;
@@ -77,8 +81,33 @@ public class GameController : MonoBehaviour
                 count++;
             }
         }
-
         //Return Count
         return count;
+    }
+
+
+    //TODO: Slowly Light up room as Player Enters (Currently Not Lighting Room at All using this Enumerator)
+    public IEnumerator SlowlyLightRoom(Light2D light)
+    {
+        //Bool To Track if Target is Reached
+        bool isNotAtTarget = true;
+
+        while (isNotAtTarget) {
+
+            //Get the Current Lights Intensity
+            float currentIntensity = light.intensity;
+
+            //Check if the Intensity reached its Target
+            if(currentIntensity == TARGET_LIGHT_INTENSITY)
+            {
+                isNotAtTarget = false;
+
+            } else
+            {
+                //Increase Intensity
+                light.intensity = Mathf.Lerp(currentIntensity, TARGET_LIGHT_INTENSITY, 0.5f);
+                yield return null;
+            }
+        }
     }
 }

@@ -56,12 +56,13 @@ public class InputModule : MonoBehaviour
         //Player is Interacting with Fusebox
         if(Input.GetKeyDown(playerController.fixFuseKey) && playerController.isPlayerInFusebox)
         {
-            if(playerController.fuseBoxKeysCount >= GameController.MAX_KEYS_REQUIRED_RESET_FUSE)
+            //Check if Player Collected all Keys Required to Open the Fusebox
+            if (playerController.fuseBoxKeysCount >= GameController.MAX_KEYS_REQUIRED_RESET_FUSE)
             {
-                //Collected all Required Keys
+                //Loop through currentCollisions
                 for (int i = 0; i <= playerController.collisionModule.currentCollisions.Count - 1; i++)
                 {
-                    //Check if Gameobject is a LighSwitch
+                    //Check if Gameobject is a Fusebox
                     if (playerController.collisionModule.currentCollisions[i].tag == "Fusebox")
                     {
                         //Get Fusebox Controller and Call FixFuse Function
@@ -71,12 +72,12 @@ public class InputModule : MonoBehaviour
                         break;
                     }
                 }
-            } else
+            }
+            else
             {
                 //Does not have enough Keys to Unlock Fusebox.
                 Debug.Log("Collect the Keys to Unlock the Fusebox!");
             }
-            
         }
     }
 }
