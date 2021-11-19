@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     //Speed
     public float moveSpeed;
 
-    //Key Controlled
+    //Key Controls
     public KeyCode staircaseIntKey = KeyCode.E;
     public KeyCode lightIntKey = KeyCode.Q;
     public KeyCode fixFuseKey = KeyCode.Z;
@@ -28,13 +28,15 @@ public class PlayerController : MonoBehaviour
     public bool isPlayerInLightswitch;
     public bool isPlayerInFusebox;
 
-    //Items
+    //Items (Needed to fix Lights)
     public int fuseBoxKeysCount = 0;
 
     private void Awake()
     {
         //Assign RigidBody Component
         rb = GetComponent<Rigidbody2D>();
+
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void FixedUpdate()

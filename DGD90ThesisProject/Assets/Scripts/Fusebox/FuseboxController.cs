@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class FuseboxController : MonoBehaviour
 {
+    //Get GameController
     public GameController gameController;
 
 
+    //Fix Fuse Function
     public void FixFusebox()
     {
         //Fuse is no longer Blown

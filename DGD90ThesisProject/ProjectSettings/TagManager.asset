@@ -8,6 +8,10 @@ TagManager:
   - Light
   - LightSwitch
   - Fusebox
+  - SpawnPoint
+  - RoomController
+  - ClosedRooms
+  - LightController
   layers:
   - Default
   - TransparentFX
