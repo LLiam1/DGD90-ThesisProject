@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         //Assign RigidBody Component
         rb = GetComponent<Rigidbody2D>();
+
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void FixedUpdate()

@@ -1,0 +1,124 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LightController : MonoBehaviour
+{
+    //Get Game Controller
+    private GameController gameController;
+
+    //Array of Light Switches
+    //public GameObject[] lightSwitches;
+    public List<GameObject> lightSwitches = new List<GameObject>();
+
+    //Array of Lights
+   // public GameObject[] lights;
+    public List<GameObject> lights = new List<GameObject>();
+
+    //Current Amount of Lights Active
+    public int lightActiveCount = 0;
+
+    //Maximium Lights Allowed Active at Once!
+    public const int MAX_LIGHTS_ACITVE = 50;
+
+    //Float Target Light Intensity
+    public const float TARGET_LIGHT_INTENSITY = 0.29f;
+
+    //Increase Light Intensity
+    public float lightIncreaseAmount = 0.75f;
+
+    //Light Descrease Intensity
+    public float lightDecreaseAmount = 0.05f;
+
+    //Check If Lights assigned
+    private bool isLightAssigned = true;
+
+    private void Start()
+    {
+        //Get Game Controller
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
+
+    public void SetupLights()
+    {
+        //Get All Light Switche
+        foreach (GameObject ls in GameObject.FindGameObjectsWithTag("LightSwitch"))
+        {
+            lightSwitches.Add(ls);
+        }
+
+        //Get All Lights
+        foreach (GameObject l in GameObject.FindGameObjectsWithTag("Light"))
+        {
+            lights.Add(l);
+        }
+
+        //Disable all Light Switches on Start
+        for (int i = 0; i <= lightSwitches.Count - 1; i++)
+        {
+            //Turn all Lights Off
+            lightSwitches[i].GetComponent<LightSwitch>().isActive = false;
+        }
+
+        //Assign Light to Random Switch.
+        isLightAssigned = false;
+
+    }
+
+    private void Update()
+    {
+        //Get the count of Active Lights
+        lightActiveCount = GetLightCount();
+
+        //Check if Fuse is Blown
+        if (lightActiveCount > MAX_LIGHTS_ACITVE)
+        {
+            //Blown Fuse! Loop Through all Lights & Turn them Off
+            for (int i = 0; i <= lightSwitches.Count - 1; i++)
+            {
+                //Turn all Lights Off
+                lightSwitches[i].GetComponent<LightSwitch>().isActive = false;
+
+                //Activate Blown Fuse
+                gameController.isFuseBlown = true;
+            }
+        }
+
+        //Check if Lights Are Assigned.
+        if(isLightAssigned == false)
+        {
+            for (int i = 0; i <= lightSwitches.Count - 1; i++)
+            {
+                //Get Random Int
+                int rand = Random.Range(0, lights.Count - 1);
+
+                //Set Random Light to LightSwitch
+                lightSwitches[i].GetComponent<LightSwitch>().rlight = lights[rand].gameObject;
+
+                //Remove Both Objects from the List
+                lightSwitches.Remove(lightSwitches[i].gameObject);
+                lights.Remove(lights[rand].gameObject);
+            }
+        }
+    }
+
+    //Get Number of Active Lights
+    private int GetLightCount()
+    {
+        //Light Counter
+        int count = 0;
+
+        //Loop through Array
+        for (int i = 0; i <= lightSwitches.Count - 1; i++)
+        {
+            //Check if Light is Active
+            if (lightSwitches[i].GetComponent<LightSwitch>().isActive)
+            {
+                //Add to count
+                count++;
+            }
+        }
+        //Return Count
+        return count;
+    }
+}
