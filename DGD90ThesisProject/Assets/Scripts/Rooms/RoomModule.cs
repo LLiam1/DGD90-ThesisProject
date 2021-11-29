@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ public class RoomModule : MonoBehaviour
     //Room is Elevator Room
     public bool isElevatorRoom = false;
 
-    void Start()
+    private void Start()
     {
         //Get The Room Controller
         roomController = GameObject.FindGameObjectWithTag("RoomController").GetComponent<RoomController>();
@@ -31,4 +32,18 @@ public class RoomModule : MonoBehaviour
         roomController.roomSpawnTimer = 0;
     }
 
+    public void SpawnFusebox(GameObject par)
+    {
+        //Verifiy This is Fuse Room
+        if (isFuseRoom)
+        {
+            //Spawn Fusebox
+            Instantiate(roomController.fuseboxPrefab, transform.position, Quaternion.identity, par.transform);
+        }
+    }
+
+    public void SpawnElevator()
+    {
+
+    }
 }

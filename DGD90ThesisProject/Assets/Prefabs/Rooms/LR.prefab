@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 3674880564379856409}
   - component: {fileID: 3871716983392283033}
   - component: {fileID: 405825568914184063}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Light
   m_Icon: {fileID: 0}
@@ -730,6 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rlight: {fileID: 0}
   isActive: 0
+  isAssigned: 0
 --- !u!1 &7632239681614623963
 GameObject:
   m_ObjectHideFlags: 0

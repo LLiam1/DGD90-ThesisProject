@@ -16,14 +16,24 @@ public class StaircaseController : MonoBehaviour
     //Staircase goes down
     public bool isDownStaircase;
 
+    public bool isav = false;
+
     private void Start()
     {
+
         if (isUpStaircase)
         {
+            //TODO: Check If Staircase is above (Possible no Room there or staircase)
+
             //Up Staircase
             destination = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
+
+
         } else if(isDownStaircase)
         {
+            //TODO: Check If Staircase is above (Possible no Room there or staircase)
+            RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 10f, 1 << LayerMask.NameToLayer("Staircase"));
+
             //Down Staircase
             destination = new Vector3(transform.position.x, transform.position.y - 10, transform.position.z);
         } else
@@ -31,36 +41,7 @@ public class StaircaseController : MonoBehaviour
             //This is not a staircase!
             return;
         }
-
-        #region Old Code
-        //TODO:  Calculate Destination based on Staircase Direction
-
-        //if (isUpStaircase)
-        //{
-        //    //Raycast Up
-        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 10f);
-
-
-        //    if(hit.collider.gameObject.tag == "Staircase")
-        //    {
-        //        Debug.Log(hit.collider.gameObject.name);
-
-
-        //        //Staircase Found!
-        //        scDestination = hit.collider.gameObject;
-        //        destination = scDestination.transform.position;
-        //    }
-
-        //} else if (isDownStaircase)
-        //{
-
-        //} else
-        //{
-        //    //Not a Staircase
-        //    return;
-        //}
-
-        #endregion
     }
-
 }
+
+

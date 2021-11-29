@@ -12,6 +12,8 @@ TagManager:
   - RoomController
   - ClosedRooms
   - LightController
+  - WayPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Staircase
   - 
   - 
   - 

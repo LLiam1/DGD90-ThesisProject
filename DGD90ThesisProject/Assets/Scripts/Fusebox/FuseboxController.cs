@@ -7,6 +7,11 @@ public class FuseboxController : MonoBehaviour
     //Get GameController
     public GameController gameController;
 
+    private void Start()
+    {
+        //Get Game Controller
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
 
     //Fix Fuse Function
     public void FixFusebox()

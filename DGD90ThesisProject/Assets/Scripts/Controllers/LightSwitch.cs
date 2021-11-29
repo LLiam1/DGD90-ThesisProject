@@ -9,9 +9,6 @@ public class LightSwitch : MonoBehaviour
     //Light Object the switch Activates
     public GameObject rlight;
 
-    //GameController
-    private GameController gameController;
-
     //Light Controller
     private LightController lightController;
 
@@ -23,9 +20,6 @@ public class LightSwitch : MonoBehaviour
 
     private void Start()
     {
-        //Get the Game Controller Component
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-
         //Get the Light Controller Component
         lightController = GameObject.FindGameObjectWithTag("LightController").GetComponent<LightController>();
     }

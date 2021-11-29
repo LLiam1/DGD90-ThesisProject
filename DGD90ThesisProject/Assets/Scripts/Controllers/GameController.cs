@@ -11,7 +11,11 @@ public class GameController : MonoBehaviour
     //Player Prefab
     public GameObject playerPrefab;
 
-    public LightController lightController;
+    //Light Controller
+    public  LightController lightController;
+
+    //Room Controller
+    public RoomController roomController;
 
     //Keys required to reset Fuse!
     public const int MAX_KEYS_REQUIRED_RESET_FUSE = 3;
@@ -19,12 +23,24 @@ public class GameController : MonoBehaviour
     //Bool Blown Fuse
     public bool isFuseBlown = false;
 
+    //Bool Randomly Generat Rooms (ON/OFF)
+    public bool randomlyGenerateRooms = true;
+
     private void Start()
     {
         //Enable Background Object
         background.SetActive(true);
 
+        //Get Light Controller
         lightController = GameObject.FindGameObjectWithTag("LightController").GetComponent<LightController>();
+
+        //Get Room Controller
+        roomController = GameObject.FindGameObjectWithTag("RoomController").GetComponent<RoomController>();
+
+        if (!randomlyGenerateRooms)
+        {
+            roomController.SetupRooms();
+        }
     }
 
     //Play Spawn Function

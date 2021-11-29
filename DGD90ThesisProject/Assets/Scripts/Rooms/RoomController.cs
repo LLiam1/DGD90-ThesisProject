@@ -25,6 +25,9 @@ public class RoomController : MonoBehaviour
     //Gameobject Parent
     public GameObject roomParent;
 
+    //Gameobject Fusebox Prefab 
+    public GameObject fuseboxPrefab;
+
     //List of Rooms Gameobjects
     public List<GameObject> rooms = new List<GameObject>();
 
@@ -52,6 +55,12 @@ public class RoomController : MonoBehaviour
     //Max Room Spawner Time
     private const float MAX_ROOM_SPAWN_TIME = 5f;
 
+    //Number of Button Generators For Elevator
+    private const int MAX_GENERATOR_BUTTONS = 3;
+
+    //Number of Button Generators Assigned
+    private int generatorButtonCount = 0;
+
     //Game Controller
     private GameController gameController;
 
@@ -60,33 +69,40 @@ public class RoomController : MonoBehaviour
         //Get Game Controller
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-        //Get Random Entry Room
-        int rand = Random.Range(0, entryRooms.Length);
 
-        //Instantiate Entry Room
-        Instantiate(entryRooms[rand], Vector3.zero, entryRooms[rand].transform.rotation, roomParent.transform.parent);
+        if (gameController.randomlyGenerateRooms)
+        {
+            //Get Random Entry Room
+            int rand = Random.Range(0, entryRooms.Length);
 
-        //Set Room to be Entry Room
-        entryRooms[rand].GetComponent<RoomModule>().isEntryRoom = true;
+            //Instantiate Entry Room
+            Instantiate(entryRooms[rand], Vector3.zero, entryRooms[rand].transform.rotation, roomParent.transform);
+
+            //Set Room to be Entry Room
+            entryRooms[rand].GetComponent<RoomModule>().isEntryRoom = true;
+        }
     }
 
     public void Update()
     {
-        //Check if Level Setup
-        if (!isLevelSetupCompleted)
+        if (gameController.randomlyGenerateRooms)
         {
-            //Check If Time between room spawn 
-            if (roomSpawnTimer >= MAX_ROOM_SPAWN_TIME)
+            //Check if Level Setup
+            if (!isLevelSetupCompleted)
             {
-                //Setup Rooms
-                SetupRooms();
-            } else
-            {
-                //Timer
-                roomSpawnTimer = roomSpawnTimer + 1 * Time.deltaTime;
+                //Check If Time between room spawn 
+                if (roomSpawnTimer >= MAX_ROOM_SPAWN_TIME)
+                {
+                    //Setup Rooms
+                    SetupRooms();
+                }
+                else
+                {
+                    //Timer
+                    roomSpawnTimer = roomSpawnTimer + 1 * Time.deltaTime;
+                }
             }
         }
-
 
         //DevTools to Reset Level
         if (Input.GetKeyDown(KeyCode.R))
@@ -108,14 +124,25 @@ public class RoomController : MonoBehaviour
         if (!isElevatorRoomAssigned)
         {
             //Assign Elevator Room
+            AssignElevatorRoom();
         }
 
         //Check if Fuse Room Assigned
         if (!isFuseRoomAssigned)
         {
-            //TODO: Assign Fuse Room
+            //Assign Fuse Room
+            AssignFuseRoom();
         }
 
+        //Check if Generators Assigned
+        if(generatorButtonCount < MAX_GENERATOR_BUTTONS)
+        {
+            //Get Generators Needed
+            int count = MAX_GENERATOR_BUTTONS - generatorButtonCount;
+
+            //Assign Generator Buttons
+            AssignGeneratorRooms(count);
+        }
 
         //Spawn Player
         gameController.SpawnPlayer(Vector3.zero);
@@ -125,9 +152,7 @@ public class RoomController : MonoBehaviour
 
         //Level Setup Complete
         isLevelSetupCompleted = true;
-
     }
-
     private void AssignTrapRoom()
     {
         //Get Random Number
@@ -151,13 +176,64 @@ public class RoomController : MonoBehaviour
 
     private void AssignFuseRoom()
     {
-        //TODO: Assign Fuse Room
+        //Lowest Y Level Room
+        GameObject lowestYRoom = rooms[0];
+
+        for(int i = 0; i <= rooms.Count - 1; i++)
+        {
+            //Check Room Y position
+            if(rooms[i].transform.position.y < lowestYRoom.transform.position.y
+                && rooms[i].gameObject.GetComponent<RoomModule>().isEntryRoom == false
+                && rooms[i].gameObject.GetComponent<RoomModule>().isFuseRoom == false
+                && rooms[i].gameObject.GetComponent<RoomModule>().isElevatorRoom == false)
+            {
+                //Set NEW lowest Room.
+                lowestYRoom = rooms[i].gameObject;
+            } 
+        }
+
+        //Set Fuse Room to True
+        lowestYRoom.gameObject.GetComponent<RoomModule>().isFuseRoom = true;
+
+        //Instantiate Fusebox
+        lowestYRoom.gameObject.GetComponent<RoomModule>().SpawnFusebox(lowestYRoom);
     }
+
 
     private void AssignElevatorRoom()
     {
-        //TODO: Assign Elevator Room
+        //Highest Y Level Room
+        GameObject highestYRoom = rooms[0];
+
+        for (int i = 0; i <= rooms.Count - 1; i++)
+        {
+            //Check Room Y position
+            if (rooms[i].transform.position.y > highestYRoom.transform.position.y
+                && rooms[i].gameObject.GetComponent<RoomModule>().isEntryRoom == false
+                && rooms[i].gameObject.GetComponent<RoomModule>().isFuseRoom == false
+                && rooms[i].gameObject.GetComponent<RoomModule>().isElevatorRoom == false)
+            {
+                //Set NEW highest Room.
+                highestYRoom = rooms[i].gameObject;
+            }
+        }
+
+        //Set Fuse Room to True
+        highestYRoom.gameObject.GetComponent<RoomModule>().isElevatorRoom = true;
     }
+
+
+    private void AssignGeneratorRooms(int count)
+    {
+        //Assign count (Number of Generator)
+        for(int i = 0; i < count; i++)
+        {
+            //TODO : Assign Generators to (x) amount of rooms.
+
+        }
+    }
+
+
 
     //Developer Tools: TODO - Better to put this in the GameController
     private void ResetLevel()
@@ -207,7 +283,7 @@ public class RoomController : MonoBehaviour
         int rand = Random.Range(0, entryRooms.Length);
 
         //Instantiate Entry Room
-        Instantiate(entryRooms[rand], Vector3.zero, entryRooms[rand].transform.rotation, roomParent.transform.parent);
+        Instantiate(entryRooms[rand], Vector3.zero, entryRooms[rand].transform.rotation, roomParent.transform);
 
         //Set Room to be Entry Room
         entryRooms[rand].GetComponent<RoomModule>().isEntryRoom = true;

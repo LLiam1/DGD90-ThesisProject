@@ -562,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rlight: {fileID: 0}
   isActive: 0
+  isAssigned: 0
 --- !u!1 &6483112851156645071
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +841,7 @@ GameObject:
   - component: {fileID: 6479440062615156912}
   - component: {fileID: 747608213928134626}
   - component: {fileID: 2554706028856186559}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Light
   m_Icon: {fileID: 0}

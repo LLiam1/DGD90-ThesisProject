@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3249189563813665244}
   - component: {fileID: 5666206625563625266}
   - component: {fileID: 2498156313661869470}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Light
   m_Icon: {fileID: 0}
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rlight: {fileID: 0}
   isActive: 0
+  isAssigned: 0
 --- !u!1 &2514145506327449735
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +761,7 @@ GameObject:
   - component: {fileID: 856898777159696531}
   - component: {fileID: 7513586768633388336}
   - component: {fileID: 6106257686954663327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Staircase
   m_TagString: Staircase
   m_Icon: {fileID: 0}
@@ -873,6 +874,7 @@ MonoBehaviour:
   scDestination: {fileID: 0}
   isUpStaircase: 1
   isDownStaircase: 0
+  isav: 0
 --- !u!1 &9205002679835266302
 GameObject:
   m_ObjectHideFlags: 0

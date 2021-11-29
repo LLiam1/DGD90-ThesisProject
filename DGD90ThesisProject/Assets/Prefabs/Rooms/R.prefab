@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 2976682422515111059}
   - component: {fileID: 3156236778459824135}
   - component: {fileID: 8386916834544635775}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Light
   m_Icon: {fileID: 0}
@@ -713,6 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rlight: {fileID: 0}
   isActive: 0
+  isAssigned: 0
 --- !u!1 &7572262123331930649
 GameObject:
   m_ObjectHideFlags: 0
