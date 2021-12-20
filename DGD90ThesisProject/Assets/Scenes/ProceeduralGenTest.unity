@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -405,6 +405,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2106411392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7705602542361647813, guid: 6ffef772696f946e597d17c59e8a555b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7705602541937288006}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4339572c3884148a1990e7c252a4b6da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2962025124469759933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -477,6 +489,16 @@ PrefabInstance:
       propertyPath: background
       value: 
       objectReference: {fileID: 944588844}
+    - target: {fileID: 2962025124858599243, guid: 330986d0264fb441f96c19d99838ebe1,
+        type: 3}
+      propertyPath: roomController
+      value: 
+      objectReference: {fileID: 2106411392}
+    - target: {fileID: 2962025124858599243, guid: 330986d0264fb441f96c19d99838ebe1,
+        type: 3}
+      propertyPath: lightController
+      value: 
+      objectReference: {fileID: 662499376}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 330986d0264fb441f96c19d99838ebe1, type: 3}
 --- !u!1001 &7705602541937288006
@@ -551,5 +573,17 @@ PrefabInstance:
       propertyPath: roomParent
       value: 
       objectReference: {fileID: 2091999866}
+    - target: {fileID: 7705602542361647813, guid: 6ffef772696f946e597d17c59e8a555b,
+        type: 3}
+      propertyPath: elevatorPrefab
+      value: 
+      objectReference: {fileID: 3774268674185958682, guid: 55d362a953be2458db0219efb467c3ea,
+        type: 3}
+    - target: {fileID: 7705602542361647813, guid: 6ffef772696f946e597d17c59e8a555b,
+        type: 3}
+      propertyPath: generatorPrefab
+      value: 
+      objectReference: {fileID: 4400359046539407952, guid: b918049b46d98498d895699b3f0a6a2b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ffef772696f946e597d17c59e8a555b, type: 3}

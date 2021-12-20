@@ -28,6 +28,12 @@ public class RoomController : MonoBehaviour
     //Gameobject Fusebox Prefab 
     public GameObject fuseboxPrefab;
 
+    //Gamobject Elevator Prefab
+    public GameObject elevatorPrefab;
+
+    //Gameobject Generator Prefab
+    public GameObject generatorPrefab;
+
     //List of Rooms Gameobjects
     public List<GameObject> rooms = new List<GameObject>();
 
@@ -55,11 +61,14 @@ public class RoomController : MonoBehaviour
     //Max Room Spawner Time
     private const float MAX_ROOM_SPAWN_TIME = 5f;
 
-    //Number of Button Generators For Elevator
-    private const int MAX_GENERATOR_BUTTONS = 3;
+    //Number of Generator Buttons
+    public int numGenButtons = 3;
 
-    //Number of Button Generators Assigned
-    private int generatorButtonCount = 0;
+    //Number of Generator Buttons Assigned
+    public int numGenButtonsAssigned = 0;
+         
+    //Button Generators For Elevator
+    public bool isAllGeneratorButtonAssigned = false;
 
     //Game Controller
     private GameController gameController;
@@ -102,6 +111,14 @@ public class RoomController : MonoBehaviour
                     roomSpawnTimer = roomSpawnTimer + 1 * Time.deltaTime;
                 }
             }
+
+            if (isLevelSetupCompleted)
+            {
+                if (!isAllGeneratorButtonAssigned)
+                {
+                    AssignGeneratorRooms();
+                }
+            }
         }
 
         //DevTools to Reset Level
@@ -134,14 +151,11 @@ public class RoomController : MonoBehaviour
             AssignFuseRoom();
         }
 
-        //Check if Generators Assigned
-        if(generatorButtonCount < MAX_GENERATOR_BUTTONS)
+        if (!isAllGeneratorButtonAssigned)
         {
-            //Get Generators Needed
-            int count = MAX_GENERATOR_BUTTONS - generatorButtonCount;
-
-            //Assign Generator Buttons
-            AssignGeneratorRooms(count);
+            for (int i = 0; i <= numGenButtons - 1; i++) {
+                AssignGeneratorRooms();
+            }
         }
 
         //Spawn Player
@@ -220,16 +234,43 @@ public class RoomController : MonoBehaviour
 
         //Set Fuse Room to True
         highestYRoom.gameObject.GetComponent<RoomModule>().isElevatorRoom = true;
+
+        //Instantiate Elevator
+        highestYRoom.gameObject.GetComponent<RoomModule>().SpawnElevator(highestYRoom);
+
+
     }
 
 
-    private void AssignGeneratorRooms(int count)
+    private void AssignGeneratorRooms()
     {
-        //Assign count (Number of Generator)
-        for(int i = 0; i < count; i++)
-        {
-            //TODO : Assign Generators to (x) amount of rooms.
+        //Get Random Number
+        int rand = Random.Range(0, rooms.Count - 1);
 
+        //Make Sure Room is NOT Elevator or Fuse or Entry
+        if (rooms[rand].GetComponent<RoomModule>().isElevatorRoom
+            || rooms[rand].GetComponent<RoomModule>().isFuseRoom
+            || rooms[rand].GetComponent<RoomModule>().isEntryRoom
+            || rooms[rand].GetComponent<RoomModule>().isGenertator)
+        {
+            //Cannot Assign Room 
+            return;
+        }
+
+        //Set Room to be Generator Room
+        rooms[rand].GetComponent<RoomModule>().isGenertator = true;
+
+        //Increment Count
+        numGenButtonsAssigned++;
+
+        //Spawn Generator button
+        rooms[rand].GetComponent<RoomModule>().SpawnGeneratorButton(rooms[rand]);
+
+        //Check if ALL buttons are spawned
+        if(numGenButtons == numGenButtonsAssigned)
+        {
+            //All Generators are assigned
+            isAllGeneratorButtonAssigned = true;
         }
     }
 

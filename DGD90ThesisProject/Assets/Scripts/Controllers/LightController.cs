@@ -22,7 +22,7 @@ public class LightController : MonoBehaviour
     public int lightActiveCount = 0;
 
     //Maximium Lights Allowed Active at Once!
-    public const int MAX_LIGHTS_ACITVE = 33;
+    public const int MAX_LIGHTS_ACITVE = 3;
 
     //Float Target Light Intensity
     public const float TARGET_LIGHT_INTENSITY = 0.29f;

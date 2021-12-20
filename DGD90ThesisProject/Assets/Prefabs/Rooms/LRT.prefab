@@ -900,10 +900,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1099484ab544f06b54eebbd3c8b936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEntryRoom: 1
+  isEntryRoom: 0
   isTrapRoom: 0
   isFuseRoom: 0
   isElevatorRoom: 0
+  isGenertator: 0
 --- !u!1 &8643243328553206935
 GameObject:
   m_ObjectHideFlags: 0

@@ -106,6 +106,11 @@ public class RoomSpawner : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Prevent Rooms from Spawning on eachother
+        if(collision == null)
+        {
+            return;
+        }
+
         if (collision.CompareTag("SpawnPoint") && gameController.randomlyGenerateRooms)
         {
             //Return when Triggers a Destroyer on the Entry Room!

@@ -22,11 +22,13 @@ public class PlayerController : MonoBehaviour
     public KeyCode staircaseIntKey = KeyCode.E;
     public KeyCode lightIntKey = KeyCode.Q;
     public KeyCode fixFuseKey = KeyCode.Z;
+    public KeyCode genIntKey = KeyCode.S;
 
     //Trigger Bools
     public bool isPlayerInStaircase;
     public bool isPlayerInLightswitch;
     public bool isPlayerInFusebox;
+    public bool isPlayerInGenerator;
 
     //Items (Needed to fix Lights)
     public int fuseBoxKeysCount = 0;
