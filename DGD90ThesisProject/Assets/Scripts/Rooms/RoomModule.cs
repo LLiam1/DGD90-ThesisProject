@@ -20,6 +20,9 @@ public class RoomModule : MonoBehaviour
     //Room is Elevator Room
     public bool isElevatorRoom = false;
 
+    //Room is Generator Room
+    public bool isGenertator = false;
+
     private void Start()
     {
         //Get The Room Controller
@@ -30,6 +33,8 @@ public class RoomModule : MonoBehaviour
 
         //Reset Spawn Timer
         roomController.roomSpawnTimer = 0;
+
+        isEntryRoom = false;
     }
 
     public void SpawnFusebox(GameObject par)
@@ -42,8 +47,23 @@ public class RoomModule : MonoBehaviour
         }
     }
 
-    public void SpawnElevator()
+    public void SpawnElevator(GameObject par)
     {
+        //Verifiy if this Elevator Room
+        if (isElevatorRoom)
+        {
+            //Spawn Elevator
+            Instantiate(roomController.elevatorPrefab, transform.position, Quaternion.identity, par.transform);
+        }
+    }
 
+    public void SpawnGeneratorButton(GameObject par)
+    {
+        //Verifiy if this is a Generator Room
+        if(isGenertator)
+        {
+            //Spawn Generator Button
+            Instantiate(roomController.generatorPrefab, transform.position, Quaternion.identity, par.transform);
+        }
     }
 }

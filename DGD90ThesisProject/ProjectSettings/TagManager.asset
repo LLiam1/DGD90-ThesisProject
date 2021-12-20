@@ -14,6 +14,8 @@ TagManager:
   - LightController
   - WayPoint
   - Enemy
+  - Elevator
+  - GeneratorButton
   layers:
   - Default
   - TransparentFX

@@ -18,7 +18,7 @@ public class InputModule : MonoBehaviour
         //Check If Key (E) is Pressed AND if Player is in a staircase Trigger.
         if (Input.GetKeyDown(playerController.staircaseIntKey) && playerController.isPlayerInStaircase)
         {
-            for(int i = 0; i <= playerController.collisionModule.currentCollisions.Count -1; i++)
+            for (int i = 0; i <= playerController.collisionModule.currentCollisions.Count - 1; i++)
             {
                 //Check if Gameobject is a Staircase
                 if (playerController.collisionModule.currentCollisions[i].tag == "Staircase")
@@ -35,7 +35,7 @@ public class InputModule : MonoBehaviour
         }
 
         //Player is Interacting with Light Switch 
-        if(Input.GetKeyDown(playerController.lightIntKey) && playerController.isPlayerInLightswitch && playerController.gameController.isFuseBlown == false)
+        if (Input.GetKeyDown(playerController.lightIntKey) && playerController.isPlayerInLightswitch && playerController.gameController.isFuseBlown == false)
         {
             for (int i = 0; i <= playerController.collisionModule.currentCollisions.Count - 1; i++)
             {
@@ -54,7 +54,7 @@ public class InputModule : MonoBehaviour
         }
 
         //Player is Interacting with Fusebox
-        if(Input.GetKeyDown(playerController.fixFuseKey) && playerController.isPlayerInFusebox)
+        if (Input.GetKeyDown(playerController.fixFuseKey) && playerController.isPlayerInFusebox)
         {
             //Check if Player Collected all Keys Required to Open the Fusebox
             if (playerController.fuseBoxKeysCount >= GameController.MAX_KEYS_REQUIRED_RESET_FUSE)
@@ -77,6 +77,19 @@ public class InputModule : MonoBehaviour
             {
                 //Does not have enough Keys to Unlock Fusebox.
                 Debug.Log("Collect the Keys to Unlock the Fusebox!");
+            }
+        }
+
+        //Player is Interacting with Generator Button
+        if (Input.GetKeyDown(playerController.genIntKey) && playerController.isPlayerInGenerator)
+        {
+            for (int i = 0; i <= playerController.collisionModule.currentCollisions.Count - 1; i++)
+            {
+                //Check if Gameobject is a Staircase
+                if (playerController.collisionModule.currentCollisions[i].tag == "GeneratorButton")
+                {
+                    playerController.collisionModule.currentCollisions[i].GetComponent<GeneratorController>().DisplayPopupWindow();
+                }
             }
         }
     }

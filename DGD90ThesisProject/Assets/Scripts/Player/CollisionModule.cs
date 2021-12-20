@@ -43,6 +43,11 @@ public class CollisionModule : MonoBehaviour
             playerController.isPlayerInFusebox = true;
         }
 
+        if(collision.gameObject.tag == "GeneratorButton")
+        {
+            playerController.isPlayerInGenerator = true;
+        }
+
         //Set the current Collision object
         currentCollisions.Add(collision.gameObject);
 
@@ -81,6 +86,11 @@ public class CollisionModule : MonoBehaviour
         {
             //Set bool Trigger to False
             playerController.isPlayerInFusebox = false;
+        }
+
+        if (collision.gameObject.tag == "GeneratorButton")
+        {
+            playerController.isPlayerInGenerator = false;
         }
 
         //Update Current Collision Object
