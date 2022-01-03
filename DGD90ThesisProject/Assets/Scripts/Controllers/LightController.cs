@@ -124,8 +124,6 @@ public class LightController : MonoBehaviour
             {
                 //Add to count
                 count++;
-
-                Debug.Log(count);
             }
         }
         //Return Count

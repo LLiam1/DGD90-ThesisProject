@@ -71,14 +71,10 @@ public class RoomController : MonoBehaviour
     public bool isAllGeneratorButtonAssigned = false;
 
     //Game Controller
-    private GameController gameController;
+    public GameController gameController;
 
     public void Start()
     {
-        //Get Game Controller
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-
-
         if (gameController.randomlyGenerateRooms)
         {
             //Get Random Entry Room
@@ -112,13 +108,6 @@ public class RoomController : MonoBehaviour
                 }
             }
 
-            if (isLevelSetupCompleted)
-            {
-                if (!isAllGeneratorButtonAssigned)
-                {
-                    AssignGeneratorRooms();
-                }
-            }
         }
 
         //DevTools to Reset Level
@@ -130,6 +119,8 @@ public class RoomController : MonoBehaviour
 
 
     public void SetupRooms() {
+
+
         //Check If Trap Room Assigned
         if (!isTrapRoomAssigned)
         {
@@ -153,7 +144,7 @@ public class RoomController : MonoBehaviour
 
         if (!isAllGeneratorButtonAssigned)
         {
-            for (int i = 0; i <= numGenButtons - 1; i++) {
+            for (int i = 0; i <= numGenButtons; i++) {
                 AssignGeneratorRooms();
             }
         }
@@ -171,6 +162,7 @@ public class RoomController : MonoBehaviour
     {
         //Get Random Number
         int rand = Random.Range(0, rooms.Count - 1);
+
 
         //Make Sure Room is NOT Elevator or Fuse or Entry
         if (rooms[rand].GetComponent<RoomModule>().isElevatorRoom
@@ -244,33 +236,39 @@ public class RoomController : MonoBehaviour
 
     private void AssignGeneratorRooms()
     {
-        //Get Random Number
-        int rand = Random.Range(0, rooms.Count - 1);
-
-        //Make Sure Room is NOT Elevator or Fuse or Entry
-        if (rooms[rand].GetComponent<RoomModule>().isElevatorRoom
-            || rooms[rand].GetComponent<RoomModule>().isFuseRoom
-            || rooms[rand].GetComponent<RoomModule>().isEntryRoom
-            || rooms[rand].GetComponent<RoomModule>().isGenertator)
+        if (numGenButtons != numGenButtonsAssigned)
         {
-            //Cannot Assign Room 
-            return;
+            //Get Random Number
+            int rand = Random.Range(0, rooms.Count - 1);
+
+            //Make Sure Room is NOT Elevator or Fuse or Entry
+            if (rooms[rand].GetComponent<RoomModule>().isElevatorRoom
+                || rooms[rand].GetComponent<RoomModule>().isFuseRoom
+                || rooms[rand].GetComponent<RoomModule>().isEntryRoom
+                || rooms[rand].GetComponent<RoomModule>().isGenerator)
+            {
+                //Cannot Assign Room 
+                return;
+            }
+
+            //Set Room to be Generator Room
+            rooms[rand].GetComponent<RoomModule>().isGenerator = true;
+
+            //Increment Count
+            numGenButtonsAssigned++;
+
+            //Spawn Generator button
+            rooms[rand].GetComponent<RoomModule>().SpawnGeneratorButton(rooms[rand]);
         }
 
-        //Set Room to be Generator Room
-        rooms[rand].GetComponent<RoomModule>().isGenertator = true;
-
-        //Increment Count
-        numGenButtonsAssigned++;
-
-        //Spawn Generator button
-        rooms[rand].GetComponent<RoomModule>().SpawnGeneratorButton(rooms[rand]);
-
         //Check if ALL buttons are spawned
-        if(numGenButtons == numGenButtonsAssigned)
+        if (numGenButtons == numGenButtonsAssigned)
         {
             //All Generators are assigned
             isAllGeneratorButtonAssigned = true;
+        } else
+        {
+            AssignGeneratorRooms();
         }
     }
 

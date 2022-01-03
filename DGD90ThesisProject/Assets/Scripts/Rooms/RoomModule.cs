@@ -21,9 +21,9 @@ public class RoomModule : MonoBehaviour
     public bool isElevatorRoom = false;
 
     //Room is Generator Room
-    public bool isGenertator = false;
+    public bool isGenerator = false;
 
-    private void Start()
+    private void Awake()
     {
         //Get The Room Controller
         roomController = GameObject.FindGameObjectWithTag("RoomController").GetComponent<RoomController>();
@@ -60,7 +60,7 @@ public class RoomModule : MonoBehaviour
     public void SpawnGeneratorButton(GameObject par)
     {
         //Verifiy if this is a Generator Room
-        if(isGenertator)
+        if(isGenerator)
         {
             //Spawn Generator Button
             Instantiate(roomController.generatorPrefab, transform.position, Quaternion.identity, par.transform);

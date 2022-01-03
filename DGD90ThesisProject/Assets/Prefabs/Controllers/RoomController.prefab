@@ -76,7 +76,14 @@ MonoBehaviour:
   roomParent: {fileID: 0}
   fuseboxPrefab: {fileID: 4859647297603868292, guid: ab18edbbc24354f5695b4b8b674b9765,
     type: 3}
+  elevatorPrefab: {fileID: 3774268674185958682, guid: 55d362a953be2458db0219efb467c3ea,
+    type: 3}
+  generatorPrefab: {fileID: 4400359046539407952, guid: b918049b46d98498d895699b3f0a6a2b,
+    type: 3}
   rooms: []
   maxRooms: 25
   currentRoomCount: 0
   roomSpawnTimer: 0
+  numGenButtons: 3
+  numGenButtonsAssigned: 0
+  isAllGeneratorButtonAssigned: 0

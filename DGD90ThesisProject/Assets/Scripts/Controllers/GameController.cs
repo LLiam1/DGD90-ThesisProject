@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     public  LightController lightController;
 
     //Room Controller
-    public RoomController roomController;
+    private RoomController roomController;
 
     //Keys required to reset Fuse!
     public const int MAX_KEYS_REQUIRED_RESET_FUSE = 3;
@@ -41,6 +41,8 @@ public class GameController : MonoBehaviour
         {
             roomController.SetupRooms();
         }
+
+        roomController.gameController = this;
     }
 
     //Play Spawn Function

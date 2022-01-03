@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/RoomTesting.unity
+    guid: 8714fcba39b6e4beeb24f76b54c58820
+  - enabled: 1
     path: Assets/Scenes/ProceeduralGenTest.unity
     guid: 8b053efc37eb34ed58502755da782348
   m_configObjects: {}
