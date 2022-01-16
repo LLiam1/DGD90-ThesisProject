@@ -42,10 +42,14 @@ public class InputModule : MonoBehaviour
                 //Check if Gameobject is a LighSwitch
                 if (playerController.collisionModule.currentCollisions[i].tag == "LightSwitch")
                 {
-
                     //Set bool to opposite of what it currently is
                     playerController.collisionModule.currentCollisions[i].GetComponent<LightSwitch>().isActive
                 = !playerController.collisionModule.currentCollisions[i].GetComponent<LightSwitch>().isActive;
+
+                    //Checks if Fuse will get blown or Lights will turn on
+
+
+                    GameObject.FindGameObjectWithTag("LightController").GetComponent<LightController>().CheckLightSwitch();
 
                     //Break out of Loops (Found what we needed)
                     break;

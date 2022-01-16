@@ -36,6 +36,9 @@ public class LightController : MonoBehaviour
     //Check If Lights assigned
     private bool isLightAssigned = true;
 
+    //Percentage Change the light goes out
+    private int percLightTriggers = 25;
+
     private void Start()
     {
         //Get Game Controller
@@ -46,20 +49,6 @@ public class LightController : MonoBehaviour
     {
         //Get the count of Active Lights
         lightActiveCount = GetLightCount();
-
-        //Check if Fuse is Blown
-        if (lightActiveCount > MAX_LIGHTS_ACITVE)
-        {
-            //Blown Fuse! Loop Through all Lights & Turn them Off
-            for (int i = 0; i <= currentLightSwitches.Count - 1; i++)
-            {
-                //Turn all Lights Off
-                currentLightSwitches[i].GetComponent<LightSwitch>().isActive = false;
-            }
-
-            //Activate Blown Fuse
-            gameController.isFuseBlown = true;
-        }
 
         //Check if Lights Are Assigned.
         if(isLightAssigned == false)
@@ -107,6 +96,24 @@ public class LightController : MonoBehaviour
         foreach (GameObject ls in GameObject.FindGameObjectsWithTag("LightSwitch"))
         {
             currentLightSwitches.Add(ls);
+        }
+    }
+
+    public void CheckLightSwitch()
+    {
+        //Check if Fuse is Blown
+        if (lightActiveCount > MAX_LIGHTS_ACITVE && Random.Range(0, 100) < percLightTriggers)
+        {
+
+            //Blown Fuse! Loop Through all Lights & Turn them Off
+            for (int i = 0; i <= currentLightSwitches.Count - 1; i++)
+            {
+                //Turn all Lights Off
+                currentLightSwitches[i].GetComponent<LightSwitch>().isActive = false;
+            }
+
+            //Activate Blown Fuse
+            gameController.isFuseBlown = true;
         }
     }
 
