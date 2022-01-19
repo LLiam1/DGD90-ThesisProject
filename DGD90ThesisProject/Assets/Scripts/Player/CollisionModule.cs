@@ -43,6 +43,7 @@ public class CollisionModule : MonoBehaviour
             playerController.isPlayerInFusebox = true;
         }
 
+        //Player enters Generator Trigger
         if(collision.gameObject.tag == "GeneratorButton")
         {
             playerController.isPlayerInGenerator = true;

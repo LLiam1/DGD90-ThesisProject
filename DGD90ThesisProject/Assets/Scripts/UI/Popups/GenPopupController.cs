@@ -11,7 +11,7 @@ public class GenPopupController : MonoBehaviour
     {
         if (progressbar.value < progressbar.maxValue)
         {
-            progressbar.value = progressbar.value + 200 * Time.deltaTime;
+            progressbar.value = progressbar.value + 400 * Time.deltaTime;
         }
     }
 }

@@ -18,7 +18,7 @@ public class MovementModule : MonoBehaviour
         playerController.rb.MovePosition(transform.position + move);
     }
 
-    //Stair Case Movement
+    //Staircase Movement
     public void SCMovement(Vector3 move)
     {
         //Moves the Player to Staircase Destination

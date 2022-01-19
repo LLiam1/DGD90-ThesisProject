@@ -17,9 +17,6 @@ public class GameController : MonoBehaviour
     //Room Controller
     private RoomController roomController;
 
-    //Keys required to reset Fuse!
-    public const int MAX_KEYS_REQUIRED_RESET_FUSE = 3;
-
     //Bool Blown Fuse
     public bool isFuseBlown = false;
 
@@ -37,8 +34,10 @@ public class GameController : MonoBehaviour
         //Get Room Controller
         roomController = GameObject.FindGameObjectWithTag("RoomController").GetComponent<RoomController>();
 
+        //Randomly Generate Rooms
         if (!randomlyGenerateRooms)
         {
+            //Setup Rooms
             roomController.SetupRooms();
         }
 

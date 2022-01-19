@@ -48,6 +48,8 @@ public class ElevatorController : MonoBehaviour
                     //TODO: Deactivate each Generator Buttons
                     generatorButtons[i].GetComponent<GeneratorController>().isGeneratorActive = false;
                 }
+
+                elevatorTimer = 0;
             }
             else
             {

@@ -60,27 +60,18 @@ public class InputModule : MonoBehaviour
         //Player is Interacting with Fusebox
         if (Input.GetKeyDown(playerController.fixFuseKey) && playerController.isPlayerInFusebox)
         {
-            //Check if Player Collected all Keys Required to Open the Fusebox
-            if (playerController.fuseBoxKeysCount >= GameController.MAX_KEYS_REQUIRED_RESET_FUSE)
+            //Loop through currentCollisions
+            for (int i = 0; i <= playerController.collisionModule.currentCollisions.Count - 1; i++)
             {
-                //Loop through currentCollisions
-                for (int i = 0; i <= playerController.collisionModule.currentCollisions.Count - 1; i++)
+                //Check if Gameobject is a Fusebox
+                if (playerController.collisionModule.currentCollisions[i].tag == "Fusebox")
                 {
-                    //Check if Gameobject is a Fusebox
-                    if (playerController.collisionModule.currentCollisions[i].tag == "Fusebox")
-                    {
-                        //Get Fusebox Controller and Call FixFuse Function
-                        playerController.collisionModule.currentCollisions[i].gameObject.GetComponent<FuseboxController>().FixFusebox();
+                    //Get Fusebox Controller and Call FixFuse Function
+                    playerController.collisionModule.currentCollisions[i].gameObject.GetComponent<FuseboxController>().FixFusebox();
 
-                        //Break out of Loops (Found what we needed)
-                        break;
-                    }
+                    //Break out of Loops (Found what we needed)
+                    break;
                 }
-            }
-            else
-            {
-                //Does not have enough Keys to Unlock Fusebox.
-                Debug.Log("Collect the Keys to Unlock the Fusebox!");
             }
         }
 

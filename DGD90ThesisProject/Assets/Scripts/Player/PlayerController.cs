@@ -30,9 +30,6 @@ public class PlayerController : MonoBehaviour
     public bool isPlayerInFusebox;
     public bool isPlayerInGenerator;
 
-    //Items (Needed to fix Lights)
-    public int fuseBoxKeysCount = 0;
-
     private void Awake()
     {
         //Assign RigidBody Component
