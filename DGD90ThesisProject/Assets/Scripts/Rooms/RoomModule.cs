@@ -8,6 +8,13 @@ public class RoomModule : MonoBehaviour
     //Room Controller
     private RoomController roomController;
 
+
+//Locating its position relative to others
+    public int X; 
+    public int Y;
+
+    public bool lightOff;
+
     //Room is Entry Room
     public bool isEntryRoom = false;
 
@@ -25,6 +32,10 @@ public class RoomModule : MonoBehaviour
 
     private void Awake()
     {
+        //Is this tile accessable?
+        lightOff = true;
+        CanEnter();
+
         //Get The Room Controller
         roomController = GameObject.FindGameObjectWithTag("RoomController").GetComponent<RoomController>();
 
@@ -35,6 +46,21 @@ public class RoomModule : MonoBehaviour
         roomController.roomSpawnTimer = 0;
 
         isEntryRoom = false;
+
+    }
+
+    //Changing the State of the Room Based on the local light
+    public bool CanEnter(){
+        if(lightOff == true) return true;
+
+        else return false;
+    }
+
+    public List<RoomModule> Neighbors(){
+        List<RoomModule> theseNeighbors = new List<RoomModule>();
+        for(int i = 0; i <= 4; i++){
+        RoomModule[i] potentialNeighbor = FindObjectOfType<RoomModule>();
+        }
     }
 
     public void SpawnFusebox(GameObject par)
