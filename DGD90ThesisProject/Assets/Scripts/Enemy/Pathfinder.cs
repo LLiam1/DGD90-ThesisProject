@@ -7,10 +7,20 @@ using UnityEngine.Tilemaps;
 public static class Pathfinder
 {
    public static List<RoomModule> Pathfind(RoomModule start, RoomModule end){
+
+
+       Debug.Log("Function Called!");
+
        int safety = 999;
-       List<PathTile> open = new List<PathTile>(){new PathTile(start,null,end)};
+
+       List<PathTile> open = new List<PathTile>()
+       {
+           new PathTile(start,null,end)
+       };
+
        Dictionary<RoomModule,PathTile> closed = new Dictionary<RoomModule, PathTile>();
        PathTile current = null;
+
        while (open.Count > 0 && safety > 0)
        {
            safety--;
@@ -24,6 +34,7 @@ public static class Pathfinder
                }
 
            open.Remove(bTile);
+
            if (bTile.Tile == end)
            {
                current = bTile;
@@ -31,7 +42,7 @@ public static class Pathfinder
            }
 
            //Just after you find your bTile
-           foreach (RoomModule nei in bTile.Tile.Neighbors())
+           foreach (RoomModule nei in bTile.Tile.theseNeighbors)
            {
                if (nei.CanEnter())
                {

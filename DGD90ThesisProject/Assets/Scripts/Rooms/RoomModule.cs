@@ -8,8 +8,10 @@ public class RoomModule : MonoBehaviour
     //Room Controller
     private RoomController roomController;
 
+    //This Rooms Neighbors 
+    public List<RoomModule> theseNeighbors = new List<RoomModule>();
 
-//Locating its position relative to others
+    //Locating its position relative to others
     public int X; 
     public int Y;
 
@@ -57,10 +59,14 @@ public class RoomModule : MonoBehaviour
     }
 
     public List<RoomModule> Neighbors(){
+
         List<RoomModule> theseNeighbors = new List<RoomModule>();
+
         for(int i = 0; i <= 4; i++){
-        RoomModule[i] potentialNeighbor = FindObjectOfType<RoomModule>();
+            RoomModule potentialNeighbor = FindObjectOfType<RoomModule>();
         }
+
+        return theseNeighbors;
     }
 
     public void SpawnFusebox(GameObject par)
@@ -92,4 +98,10 @@ public class RoomModule : MonoBehaviour
             Instantiate(roomController.generatorPrefab, transform.position, Quaternion.identity, par.transform);
         }
     }
+
+
+    public Vector3 CurrentPos() {
+        return transform.position;
+    }
+    
 }

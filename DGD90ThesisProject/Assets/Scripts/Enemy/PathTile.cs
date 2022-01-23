@@ -15,7 +15,8 @@ public class PathTile
    public int Value;
 
    public PathTile(RoomModule t, PathTile cf, RoomModule dest){
-       Tile = t; CameFrom = cf;
+       Tile = t;
+       CameFrom = cf;
        FromStart = CameFrom != null ? CameFrom.FromStart + 1 : 0;
        FromEnd = Mathf.Abs(Tile.X - dest.X) + Mathf.Abs(Tile.Y - dest.Y);
        Value = FindValue();
