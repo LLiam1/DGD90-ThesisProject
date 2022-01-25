@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public CollisionModule collisionModule;
     public InputModule inputModule;
 
+    public RoomModule currentRoom;
+
     //Game Controller
     public GameController gameController;
 
@@ -43,4 +45,6 @@ public class PlayerController : MonoBehaviour
         //Call Player Movement
         movementModule.Movement(new Vector2(Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed, 0));
     }
+
+    
 }

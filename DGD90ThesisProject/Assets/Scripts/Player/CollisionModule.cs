@@ -49,6 +49,11 @@ public class CollisionModule : MonoBehaviour
             playerController.isPlayerInGenerator = true;
         }
 
+        if(collision.gameObject.tag == "Room")
+        {
+            playerController.currentRoom = collision.gameObject.GetComponent<RoomModule>();
+        }
+
         //Set the current Collision object
         currentCollisions.Add(collision.gameObject);
 
@@ -92,6 +97,11 @@ public class CollisionModule : MonoBehaviour
         if (collision.gameObject.tag == "GeneratorButton")
         {
             playerController.isPlayerInGenerator = false;
+        }
+
+        if(collision.gameObject.tag == "Room")
+        {
+            playerController.currentRoom = null;
         }
 
         //Update Current Collision Object
