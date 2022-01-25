@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
 
     public List<RoomModule> currentPath = new List<RoomModule>();
 
-
     private Rigidbody2D rb;
 
     private void Start()
@@ -37,26 +36,4 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Room")
-        {
-            if (startRoom == null)
-            {
-                startRoom = collision.gameObject.GetComponent<RoomModule>();
-            }
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Room")
-        {
-
-            if (startRoom == null)
-            {
-                startRoom = collision.gameObject.GetComponent<RoomModule>();
-            }
-        }
-    }
 }
