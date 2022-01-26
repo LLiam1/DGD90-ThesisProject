@@ -7,6 +7,8 @@ public class InputModule : MonoBehaviour
     //PlayerController
     private PlayerController playerController;
 
+    public GameObject flashlight;
+
     private void Awake()
     {
         //Get the Player Controller Component
@@ -87,5 +89,12 @@ public class InputModule : MonoBehaviour
                 }
             }
         }
+
+        //Player moving the mouse to rotate the flashlight
+     Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(flashlight.transform.position);
+     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+     flashlight.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+ 
     }
 }
