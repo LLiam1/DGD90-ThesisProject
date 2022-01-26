@@ -12,6 +12,13 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public enum EnemyStates { Idle, Moving, Attack };
+    public EnemyStates state;
+
+    public RoomModule currentRoom;
+
+    private bool reachedlocation = true;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,21 +26,71 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.N))
+        //Switch Between Enemy States
+        switch (state)
         {
-            currentPath = Pathfinder.Pathfind(startRoom, endRoom);
-        }
+            //Moving 
+            case EnemyStates.Moving:
 
-        if (currentPath.Count > 0) { 
-            if (Vector3.Distance(transform.position, currentPath[0].CurrentPos()) > 0.01)
-            {
-                float step = 5 * Time.deltaTime;
-                transform.position = Vector2.MoveTowards(transform.position, currentPath[0].CurrentPos(), step);
-            } else
-            {
-                currentPath.RemoveAt(0);
-            }
+                //Move Towards Player
+                MoveTowardsPlayer();
+                break;
+
+            //Idle State
+            case EnemyStates.Idle:
+                break;
+
+            //Attack State
+            case EnemyStates.Attack:
+                break;
         }
     }
 
+
+    private void MoveTowardsPlayer()
+    {
+        //Check if Location is Reached
+        if (reachedlocation)
+        {
+            //Set Current Room
+            startRoom = currentRoom;
+
+            //Create a Path towards the player
+            currentPath = Pathfinder.Pathfind(currentRoom, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().currentRoom);
+        }
+
+        if (currentPath.Count > 0)
+        {
+            //Check if Reached Target
+            if (Vector3.Distance(transform.position, currentPath[0].CurrentPos()) > 0.001)
+            {
+                float step = 5 * Time.deltaTime;
+
+                //Move to Target Position
+                transform.position = Vector2.MoveTowards(transform.position, currentPath[0].CurrentPos(), step);
+
+                //Position Not Reached
+                reachedlocation = false;
+          
+            }
+            else
+            {
+                //Position Reached
+                reachedlocation = true;
+
+                //Removed From List because Location Reached
+                currentPath.RemoveAt(0);
+            }
+        }
+        
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Room")
+        {
+            currentRoom = collision.gameObject.GetComponent<RoomModule>();
+        }   
+    }
 }

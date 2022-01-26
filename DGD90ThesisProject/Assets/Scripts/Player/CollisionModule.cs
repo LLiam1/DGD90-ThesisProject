@@ -99,11 +99,6 @@ public class CollisionModule : MonoBehaviour
             playerController.isPlayerInGenerator = false;
         }
 
-        if(collision.gameObject.tag == "Room")
-        {
-            playerController.currentRoom = null;
-        }
-
         //Update Current Collision Object
         currentCollisions.Remove(collision.gameObject);
 

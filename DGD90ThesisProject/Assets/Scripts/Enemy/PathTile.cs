@@ -19,7 +19,6 @@ public class PathTile
        CameFrom = cf;
        FromStart = CameFrom != null ? CameFrom.FromStart + 1 : 0;
        FromEnd = Mathf.Abs(Tile.X - dest.X) + Mathf.Abs(Tile.Y - dest.Y);
-       Value = FindValue();
    }
 
    public int FindValue(){

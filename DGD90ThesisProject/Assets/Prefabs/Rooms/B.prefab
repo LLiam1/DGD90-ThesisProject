@@ -118,6 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 964328640539305306}
   - component: {fileID: 7291485645201593979}
+  - component: {fileID: 7272768451749947220}
   m_Layer: 0
   m_Name: B
   m_TagString: Untagged
@@ -156,10 +157,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1099484ab544f06b54eebbd3c8b936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theseNeighbors: []
+  X: 0
+  Y: 0
+  lightOff: 0
   isEntryRoom: 0
   isTrapRoom: 0
   isFuseRoom: 0
   isElevatorRoom: 0
+  isGenerator: 0
+--- !u!61 &7272768451749947220
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966560264646529010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10}
+  m_EdgeRadius: 0
 --- !u!1 &966603091820316812
 GameObject:
   m_ObjectHideFlags: 0
