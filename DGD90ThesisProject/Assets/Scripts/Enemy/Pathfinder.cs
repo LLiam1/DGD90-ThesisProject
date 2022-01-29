@@ -60,7 +60,10 @@ public static class Pathfinder
                        closed[nei].CameFrom = bTile;
                        closed[nei].Value = closed[nei].FindValue();
                    }
-               }
+               } else
+                {
+                    GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().state = Enemy.EnemyStates.Idle;
+                }
            }
        }
        List<RoomModule> path = new List<RoomModule>();

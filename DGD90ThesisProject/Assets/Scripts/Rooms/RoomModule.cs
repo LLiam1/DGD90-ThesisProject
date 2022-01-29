@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class RoomModule : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class RoomModule : MonoBehaviour
 
     //This Rooms Neighbors 
     public List<RoomModule> theseNeighbors = new List<RoomModule>();
+
+    //This Rooms Light
+    public GameObject roomLight;
 
     //Locating its position relative to others
     public int X; 
@@ -48,7 +52,12 @@ public class RoomModule : MonoBehaviour
         roomController.roomSpawnTimer = 0;
 
         isEntryRoom = false;
+    }
 
+    private void Update()
+    {
+        //Check Room Light Status
+        CheckLight();
     }
 
     //Changing the State of the Room Based on the local light
@@ -57,6 +66,18 @@ public class RoomModule : MonoBehaviour
 
         else return false;
     }
+
+    public void CheckLight() {
+        if (roomLight.GetComponent<Light2D>().intensity == 0)
+        {
+            //Light is off
+            lightOff = true;
+        } else
+        {
+            lightOff = false;
+        }
+    }
+
 
     public List<RoomModule> Neighbors(){
 
