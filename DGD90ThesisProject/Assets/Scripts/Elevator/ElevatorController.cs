@@ -83,4 +83,12 @@ public class ElevatorController : MonoBehaviour
 
         return false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player" && ElevatorActiveStatus())
+        {
+            Debug.Log("Player Won!");
+        }
+    }
 }

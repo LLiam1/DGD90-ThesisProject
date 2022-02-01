@@ -62,7 +62,7 @@ public static class Pathfinder
                    }
                } else
                 {
-                    GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().state = Enemy.EnemyStates.Idle;
+                    GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>().state = Enemy.EnemyStates.Roam;
                 }
            }
        }

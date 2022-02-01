@@ -321,6 +321,9 @@ MonoBehaviour:
   currentPath: []
   state: 0
   currentRoom: {fileID: 0}
+  timer: 0
+  randRoom: {fileID: 0}
+  roomController: {fileID: 2074141792}
 --- !u!58 &576736119
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -923,6 +926,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2074141792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7705602542361647813, guid: 6ffef772696f946e597d17c59e8a555b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1594712559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4339572c3884148a1990e7c252a4b6da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2127650032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7335573553926299028, guid: 6cec2c8630dd84949a54d6ba9dd6227e,
