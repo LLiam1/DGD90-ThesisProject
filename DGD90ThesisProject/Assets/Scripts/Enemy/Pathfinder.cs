@@ -8,9 +8,6 @@ public static class Pathfinder
 {
    public static List<RoomModule> Pathfind(RoomModule start, RoomModule end){
 
-
-       Debug.Log("Function Called!");
-
        int safety = 999;
 
        List<PathTile> open = new List<PathTile>()

@@ -7,6 +7,7 @@ public class InputModule : MonoBehaviour
     //PlayerController
     private PlayerController playerController;
 
+    //Flash Light GameObject
     public GameObject flashlight;
 
     private void Awake()
@@ -49,8 +50,6 @@ public class InputModule : MonoBehaviour
                 = !playerController.collisionModule.currentCollisions[i].GetComponent<LightSwitch>().isActive;
 
                     //Checks if Fuse will get blown or Lights will turn on
-
-
                     GameObject.FindGameObjectWithTag("LightController").GetComponent<LightController>().CheckLightSwitch();
 
                     //Break out of Loops (Found what we needed)
@@ -85,15 +84,27 @@ public class InputModule : MonoBehaviour
                 //Check if Gameobject is a Staircase
                 if (playerController.collisionModule.currentCollisions[i].tag == "GeneratorButton")
                 {
+                    //Check if Popup exists
+                    if (playerController.collisionModule.currentCollisions[i].GetComponent<GeneratorController>().currentPopup)
+                    {
+                        //Destroy Object if the Window is Already Open.
+                        Destroy(playerController.collisionModule.currentCollisions[i].GetComponent<GeneratorController>().currentPopup);
+                    }
+
+                    //Display Window
                     playerController.collisionModule.currentCollisions[i].GetComponent<GeneratorController>().DisplayPopupWindow();
                 }
             }
         }
 
         //Player moving the mouse to rotate the flashlight
-     Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(flashlight.transform.position);
-     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-     flashlight.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(flashlight.transform.position);
+
+        //Get Angle of Flash Light
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        //Rotate Flash light
+        flashlight.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
  
     }

@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     public float timer = 0;
 
-    private const float IDLE_TIME = 5f;
+    private const float IDLE_TIME = 2.5f;
 
     public RoomModule randRoom;
 
@@ -42,9 +42,8 @@ public class Enemy : MonoBehaviour
         {
             //Moving 
             case EnemyStates.Moving:
-
                 //Move Towards Player
-                MoveTowardsPlayer();
+                StartCoroutine(ChasePlayer());
                 break;
 
             //Idle State
@@ -72,6 +71,8 @@ public class Enemy : MonoBehaviour
         } 
     }
 
+
+
     private void Idle()
     {
         if(timer >= IDLE_TIME)
@@ -84,7 +85,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void MoveTowardsPlayer()
+    IEnumerator ChasePlayer()
     {
         //Check if Location is Reached
         if (reachedlocation)
@@ -117,13 +118,12 @@ public class Enemy : MonoBehaviour
                 //Removed From List because Location Reached
                 currentPath.RemoveAt(0);
             }
-        } else
+        }
+        else
         {
             state = EnemyStates.Idle;
-
-            timer = 0;
+            yield return null;
         }
-        
     }
 
 
@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
             //Position Reached
             reachedlocation = true;
 
-            state = EnemyStates.Idle;
+            state = EnemyStates.Moving;
 
             timer = 0;
         }
@@ -161,10 +161,12 @@ public class Enemy : MonoBehaviour
     {
         if(!roamRoomSet)
         {
+            //Get Random Room
             int rand = UnityEngine.Random.Range(0, roomController.rooms.Count - 1);
 
             randRoom = roomController.rooms[rand].GetComponent<RoomModule>();
 
+            //Random room is set
             roamRoomSet = true;
         } else
         {
@@ -217,6 +219,12 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag == "Room")
         {
             currentRoom = collision.gameObject.GetComponent<RoomModule>();
-        }   
+        }
+
+        //Player Collides with Enemy
+        if(collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Player Lost");
+        }
     }
 }
