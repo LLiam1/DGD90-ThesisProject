@@ -163,7 +163,6 @@ public class RoomController : MonoBehaviour
         //Get Random Number
         int rand = Random.Range(0, rooms.Count - 1);
 
-
         //Make Sure Room is NOT Elevator or Fuse or Entry
         if (rooms[rand].GetComponent<RoomModule>().isElevatorRoom
             || rooms[rand].GetComponent<RoomModule>().isFuseRoom

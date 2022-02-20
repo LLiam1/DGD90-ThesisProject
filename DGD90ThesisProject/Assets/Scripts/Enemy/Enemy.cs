@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     public RoomModule currentRoom;
 
-    private bool reachedlocation = true;
+    public bool reachedlocation = true;
 
     public float timer = 0;
 
@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     private void Update()
