@@ -61,8 +61,10 @@ public class LightController : MonoBehaviour
                 //Set Random Light to LightSwitch
                 lightSwitches[i].GetComponent<LightSwitch>().rlight = lights[rand].gameObject;
 
-                //Remove Both Objects from the List
-                lightSwitches.Remove(lightSwitches[i].gameObject);
+                lightSwitches[i].gameObject.transform.parent.GetComponent<RoomModule>().switchControlledLight = lights[rand].gameObject;
+
+               //Remove Both Objects from the List
+               lightSwitches.Remove(lightSwitches[i].gameObject);
                 lights.Remove(lights[rand].gameObject);
             }
         }

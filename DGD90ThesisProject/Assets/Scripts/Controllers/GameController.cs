@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
     public void SpawnPlayer(Vector3 pos)
     {
         //Resposition Player
-        pos.y = -3;
+        pos.y = 3;
 
         //Instantiate Player
         Instantiate(playerPrefab, pos, Quaternion.identity);

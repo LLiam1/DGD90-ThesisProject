@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         }
 
         //If Room Light turns on! Flee to different room!
-        if(!currentRoom.lightOff)
+        if(!currentRoom.isLightOn)
         {
             state = EnemyStates.Flee;
         } 

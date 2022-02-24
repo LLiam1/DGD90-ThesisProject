@@ -22,6 +22,9 @@ public class LightSwitch : MonoBehaviour
     {
         //Get the Light Controller Component
         lightController = GameObject.FindGameObjectWithTag("LightController").GetComponent<LightController>();
+
+        //Set Intensity
+        rlight.GetComponent<Light2D>().intensity = 0;
     }
 
     private void Update()

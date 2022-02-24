@@ -41,7 +41,7 @@ public static class Pathfinder
            //Just after you find your bTile
            foreach (RoomModule nei in bTile.Tile.theseNeighbors)
            {
-               if (nei.CanEnter())
+                if (nei.isLightOn == false)
                {
                    if (!closed.ContainsKey(nei))
                    {

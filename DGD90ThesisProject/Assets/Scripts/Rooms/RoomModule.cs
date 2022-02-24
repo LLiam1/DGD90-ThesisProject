@@ -15,11 +15,13 @@ public class RoomModule : MonoBehaviour
     //This Rooms Light
     public GameObject roomLight;
 
-    //Locating its position relative to others
-    public int X; 
-    public int Y;
+    //Switch Controlled Light
+    public GameObject switchControlledLight;
 
-    public bool lightOff;
+    //Current Room Light Switch
+    public GameObject roomLightSwitch;
+
+    public bool isLightOn;
 
     //Room is Entry Room
     public bool isEntryRoom = false;
@@ -36,11 +38,12 @@ public class RoomModule : MonoBehaviour
     //Room is Generator Room
     public bool isGenerator = false;
 
+    public int X, Y;
+
     private void Awake()
     {
         //Is this tile accessable?
-        lightOff = true;
-        CanEnter();
+        isLightOn = false;
 
         //Get The Room Controller
         roomController = GameObject.FindGameObjectWithTag("RoomController").GetComponent<RoomController>();
@@ -60,30 +63,27 @@ public class RoomModule : MonoBehaviour
         CheckLight();
     }
 
-    //Changing the State of the Room Based on the local light
-    public bool CanEnter(){
-        if(lightOff == true) return true;
 
-        else return false;
-    }
-
-    public void CheckLight() {
-        if (roomLight.GetComponent<Light2D>().intensity == 0)
+    public void CheckLight()
+    {
+        if (roomLightSwitch.GetComponent<LightSwitch>().isActive)
         {
-            //Light is off
-            lightOff = true;
-        } else
+            isLightOn = true;
+        }
+        else
         {
-            lightOff = false;
+            isLightOn = false;
         }
     }
 
 
-    public List<RoomModule> Neighbors(){
+    public List<RoomModule> Neighbors()
+    {
 
         List<RoomModule> theseNeighbors = new List<RoomModule>();
 
-        for(int i = 0; i <= 4; i++){
+        for (int i = 0; i <= 4; i++)
+        {
             RoomModule potentialNeighbor = FindObjectOfType<RoomModule>();
         }
 
@@ -113,7 +113,7 @@ public class RoomModule : MonoBehaviour
     public void SpawnGeneratorButton(GameObject par)
     {
         //Verifiy if this is a Generator Room
-        if(isGenerator)
+        if (isGenerator)
         {
             //Spawn Generator Button
             Instantiate(roomController.generatorPrefab, transform.position, Quaternion.identity, par.transform);
@@ -121,8 +121,9 @@ public class RoomModule : MonoBehaviour
     }
 
 
-    public Vector3 CurrentPos() {
+    public Vector3 CurrentPos()
+    {
         return transform.position;
     }
-    
+
 }
