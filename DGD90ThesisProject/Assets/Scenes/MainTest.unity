@@ -916,8 +916,8 @@ MonoBehaviour:
   currentLightSwitches: []
   lights: []
   lightActiveCount: 0
-  lightIncreaseAmount: 0.75
-  lightDecreaseAmount: 0.05
+  lightIncreaseAmount: 1.75
+  lightDecreaseAmount: 1.75
 --- !u!1001 &1223634744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1300,6 +1300,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4289527035207068411, guid: b2a8181d7bf124480b74ee381df881c9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289527035207068411, guid: b2a8181d7bf124480b74ee381df881c9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289527035207068411, guid: b2a8181d7bf124480b74ee381df881c9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4289527035207068412, guid: b2a8181d7bf124480b74ee381df881c9,
         type: 3}
       propertyPath: m_Name
@@ -1308,7 +1323,7 @@ PrefabInstance:
     - target: {fileID: 4289527035207068412, guid: b2a8181d7bf124480b74ee381df881c9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a8181d7bf124480b74ee381df881c9, type: 3}
@@ -1505,7 +1520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029058212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8326602, y: -10.830315, z: -8.920403}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -25,7 +25,7 @@ public class LightController : MonoBehaviour
     public const int MAX_LIGHTS_ACITVE = 3;
 
     //Float Target Light Intensity
-    public const float TARGET_LIGHT_INTENSITY = 0.29f;
+    public const float TARGET_LIGHT_INTENSITY = 2.43f;
 
     //Increase Light Intensity
     public float lightIncreaseAmount = 0.75f;
